@@ -1,0 +1,43 @@
+{
+  "name": "grunt-templater",
+  "description": "Grunt task for template compilation.",
+  "version": "0.0.1",
+  "homepage": "https://github.com/rockwood/grunt-templater",
+  "author": {
+    "name": "Kevin Rockwood",
+    "email": "kevin@rockwood.me",
+    "url": "http://kevin@rockwood.me"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:rockwood/grunt-templater.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rockwood/grunt-templater/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/rockwood/grunt-template/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "grunt.js",
+  "bin": {
+    "grunt-templater": "bin/grunt-templater"
+  },
+  "engines": {
+    "node": ">=0.4.11"
+  },
+  "dependencies": {
+    "grunt": ">=0.3.7",
+    "consolidate": ">=0.4.0"
+  },
+  "devDependencies": {
+    "grunt": "~0.3.7"
+  },
+  "keywords": [
+    "template",
+    "grunt",
+    "gruntplugin"
+  ]
+}
