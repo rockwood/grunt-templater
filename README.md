@@ -1,69 +1,74 @@
-# grunt-less
+# grunt-templater
 
-LESS task for grunt.
+Universal template compiler task for grunt. It uses [Consolidate](https://github.com/visionmedia/consolidate.js) under the hood.
+
+## Supported template engines
+
+  - [dust](https://github.com/akdubya/dustjs) [(website)](http://akdubya.github.com/dustjs/)
+  - [eco](https://github.com/sstephenson/eco)
+  - [ejs](https://github.com/visionmedia/ejs)
+  - [haml](https://github.com/visionmedia/haml.js) [(website)](http://haml-lang.com/)
+  - [haml-coffee](https://github.com/9elements/haml-coffee) [(website)](http://haml-lang.com/)
+  - [handlebars](https://github.com/wycats/handlebars.js/) [(website)](http://handlebarsjs.com/)
+  - [hogan](https://github.com/twitter/hogan.js) [(website)](http://twitter.github.com/hogan.js/)
+  - [jade](https://github.com/visionmedia/jade) [(website)](http://jade-lang.com/)
+  - [jazz](https://github.com/shinetech/jazz)
+  - [jqtpl](https://github.com/kof/node-jqtpl) [(website)](http://api.jquery.com/category/plugins/templates/)
+  - [liquor](https://github.com/chjj/liquor)
+  - [mustache](https://github.com/janl/mustache.js)
+  - [QEJS](https://github.com/jepso/QEJS)
+  - [swig](https://github.com/paularmstrong/swig) [(website)](http://paularmstrong.github.com/swig/)
+  - [underscore](https://github.com/documentcloud/underscore) [(website)](http://documentcloud.github.com/underscore/)
+  - [walrus](https://github.com/jeremyruppel/walrus) [(website)](http://documentup.com/jeremyruppel/walrus/)
+  - [whiskers](https://github.com/gsf/whiskers.js/tree/)
 
 ## Getting Started
-Install this grunt plugin next to your project's [grunt.js gruntfile][getting_started] with: `npm install grunt-less`
+    
+install via npm
 
-Then add this line to your project's `grunt.js` gruntfile:
+    npm install grunt-templater
 
-```javascript
-grunt.loadNpmTasks('grunt-less');
-```
+install the template compiler you intend to use. For example:
+  
+    npm install jade
 
-[npm_registry_page]: http://search.npmjs.org/#/grunt-less
-[grunt]: https://github.com/cowboy/grunt
-[getting_started]: https://github.com/cowboy/grunt/blob/master/docs/getting_started.md
+and in your grunt.js file:
 
-## Documentation
-This task is a [multi task][types_of_tasks], meaning that grunt will automatically iterate over all `less` targets if a target is not specified.
+    grunt.loadNpmTasks('grunt-templater');
 
-### Target Properties
-*   __src__*(required)*: The LESS file(s) to be compiled. Can be either a string or an array of strings. If more than one LESS file is provided, each LESS file will be compiled individually and then concatenated together.
-*   __dest__*(required)*: The path where the output from the LESS compilation should be placed. Must be a string as there can be only one destination.
-*   __options__*(optional)*: An object of LESS options. As of right now, the only options supported are `compress` and `yuicompress`.
+## Usage
+    
+Create a `template` task in your grunt config. Templater will guess the intended template engine based on the `src` filename. Pass the `engine` option to force a specific engine. 
 
-### Example
-
-```javascript
-// project configuration
-grunt.initConfig({
-    less: {
-        signup: {
-            src: 'signup.less',
-            dest: 'signup.css'
+    grunt.initConfig({
+      template: {
+        dev: {
+          src: 'app/homepage.jade',
+          dest: 'dev.html',
+          variables: {
+            css: 'app.css'
+            title: 'Hello World'
+            pretty: true
+          }
         },
-        homepage: {
-            src: ['banner.less', 'app.less'],
-            dest: 'homepage.css',
-            options: {
-                yuicompress: true
-            }
+        dist: {
+          src: 'app/homepage.jade',
+          dest: 'dist/index.html',
+          variables: {
+            css_url: 'app.min.css'
+            title: 'Hello Production'
+          }
         }
-        all: {
-            src: '*.less',
-            dest: 'all.css',
-            options: {
-                compress: true
-            }
-        }
+      },
+      ...
+    });
 
-    }
-});
-```
+run with:
+      
+    grunt template
 
-[types_of_tasks]: https://github.com/cowboy/grunt/blob/master/docs/types_of_tasks.md
+or for a specific target:
 
-## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [grunt][grunt].
+    grunt template:dev
 
-## Release History
-*   __04/08/2012 - 0.1.4__: Refactored the code to make the helper function more usable. 
-*   __04/08/2012 - 0.1.3__: Added `gruntplugin` keyword to be [consistent with other plugins](https://github.com/cowboy/grunt/issues/111).
-*   __04/05/2012 - 0.1.2__: Added support for wildcard patterns and normalizing linefeeds for concatenation. 
-*   __04/04/2012 - 0.1.1__: Checking to see if the `src` and `dest` properties are defined. Also now accept a string for `src` and not just an array of strings.
-*   __04/04/2012 - 0.1.0__: Initial release.
-
-## License
-Copyright (c) 2012 Jake Harding  
-Licensed under the MIT license.
+`src`, `dest`, and `variables` are required. Engine specific options can also be passed through the `variables` option. In the case of Jade, `pretty: true` adds pretty-indentation whitespace to its output.
