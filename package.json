@@ -3,15 +3,17 @@
   "description": "Grunt task for template compilation.",
   "version": "0.0.1",
   "homepage": "https://github.com/rockwood/grunt-templater",
-  "author": {
-    "name": "Kevin Rockwood",
-    "email": "kevin@rockwood.me",
-    "url": "http://kevin@rockwood.me"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:rockwood/grunt-templater.git"
-  },
+  "author": "Kevin Rockwood <kevin@rockwood.me>"},
+  "repositories": [
+    {
+      "type": "git",
+      "url": "git@github.com:rockwood/grunt-templater.git"
+    },
+    {
+      "type": "git",
+      "url": "https://github.com/visionmedia/consolidate.js.git" 
+    }
+  ],
   "bugs": {
     "url": "https://github.com/rockwood/grunt-templater/issues"
   },
@@ -38,6 +40,10 @@
   },
   "keywords": [
     "template",
+    "jade",
+    "ejs",
+    "handlebars",
+    "mustache",
     "grunt",
     "gruntplugin"
   ]
