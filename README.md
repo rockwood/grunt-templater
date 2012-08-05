@@ -1,6 +1,6 @@
 # grunt-templater
 
-Universal template compiler task for grunt. It uses [Consolidate](https://github.com/visionmedia/consolidate.js) under the hood.
+Universal template compiler task for Grunt. It uses [Consolidate](https://github.com/visionmedia/consolidate.js) under the hood.
 
 ## Supported template engines
 
@@ -28,7 +28,7 @@ install via npm
 
     npm install grunt-templater
 
-install the template compiler you intend to use. For example:
+install the template engine you intend to use. For example, if using Jade:
   
     npm install jade
 

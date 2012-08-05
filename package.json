@@ -3,7 +3,7 @@
   "description": "Universal template compiler task for Grunt.",
   "version": "0.0.1",
   "homepage": "https://github.com/rockwood/grunt-templater",
-  "author": "Kevin Rockwood <kevin@rockwood.me>"},
+  "author": "Kevin Rockwood <kevin@rockwood.me>",
   "repositories": [
     {
       "type": "git",
