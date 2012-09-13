@@ -34,11 +34,13 @@ module.exports = function(grunt) {
     "jt"          : "jade",
     "jazz"        : "jazz",
     "jqtpl"       : "jqtpl",
+    "jst"         : "underscore",
     "liquor"      : "liquor",
     "mustache"    : "mustache",
     "QEJS"        : "QEJS",
     "swig"        : "swig",
     "underscore"  : "underscore",
+    "us"          : "underscore",
     "walrus"      : "walrus",
     "whiskers"    : "whiskers"
   };
