@@ -46,7 +46,7 @@ Create a `template` task in your grunt config. Templater will guess the intended
           src: 'app/homepage.jade',
           dest: 'dev.html',
           variables: {
-            css: 'app.css'
+            css_url: 'app.css'
             title: 'Hello World'
             pretty: true
           }
