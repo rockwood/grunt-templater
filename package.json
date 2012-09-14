@@ -3,7 +3,7 @@
   "description": "Universal template compiler task for Grunt.",
   "version": "0.0.1",
   "homepage": "https://github.com/rockwood/grunt-templater",
-  "author": "Kevin Rockwood <kevin@rockwood.me>"},
+  "author": "Kevin Rockwood <kevin@rockwood.me>",
   "repositories": [
     {
       "type": "git",
@@ -11,7 +11,7 @@
     },
     {
       "type": "git",
-      "url": "https://github.com/visionmedia/consolidate.js.git" 
+      "url": "https://github.com/visionmedia/consolidate.js.git"
     }
   ],
   "bugs": {
@@ -36,14 +36,14 @@
   },
   "devDependencies": {
     "grunt": "~0.3.7",
-    "consolidate": ">=0.4.0"   
+    "consolidate": ">=0.4.0"
   },
   "keywords": [
     "template",
     "jade",
     "ejs",
     "handlebars",
-    "mustache", 
+    "mustache",
     "grunt",
     "gruntplugin"
   ]

@@ -14,11 +14,11 @@
  */
 
 module.exports = function(grunt) {
-  
+
   var cons = require('consolidate'),
       fs = require('fs'),
       _ = grunt.utils._;
-  
+
   var extensions = {
     "dust"        : "dust",
     "eco"         : "eco",
@@ -34,11 +34,13 @@ module.exports = function(grunt) {
     "jt"          : "jade",
     "jazz"        : "jazz",
     "jqtpl"       : "jqtpl",
+    "jst"         : "underscore",
     "liquor"      : "liquor",
     "mustache"    : "mustache",
     "QEJS"        : "QEJS",
     "swig"        : "swig",
     "underscore"  : "underscore",
+    "us"          : "underscore",
     "walrus"      : "walrus",
     "whiskers"    : "whiskers"
   };
@@ -51,6 +53,9 @@ module.exports = function(grunt) {
   grunt.registerMultiTask('template', 'generates an html file from a specified template', function(){
     var config = this;
     var data = this.data;
+    // Tell grunt this task is asynchronous.
+    var done = this.async();
+
 
     _(['src', 'dest', 'variables']).each(function(attr){
       config.requiresConfig([config.name, config.target, attr].join('.'));
@@ -64,9 +69,14 @@ module.exports = function(grunt) {
     }
 
     cons[engine](data.src, data.variables, function(err, html){
-      if (err) throw err;
+      if (err)
+      {
+        grunt.log.error(err);
+        done(false);
+      }
       grunt.file.write(data.dest, html);
       grunt.log.writeln("HTML written to '"+ data.dest +"'");
+      done(true);
     });
   });
 };
