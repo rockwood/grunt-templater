@@ -1,7 +1,7 @@
 {
   "name": "grunt-templater",
   "description": "Universal template compiler task for Grunt.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "homepage": "https://github.com/rockwood/grunt-templater",
   "author": "Kevin Rockwood <kevin@rockwood.me>",
   "repositories": [
