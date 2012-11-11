@@ -16,8 +16,12 @@
 module.exports = function(grunt) {
 
   var cons = require('consolidate'),
-      fs = require('fs'),
-      _ = grunt.utils._;
+      fs = require('fs');
+
+  // TODO: ditch this when grunt v0.4 is released
+  grunt.util = grunt.util || grunt.utils;
+
+  var _ = grunt.util._;
 
   var extensions = {
     "dust"        : "dust",
