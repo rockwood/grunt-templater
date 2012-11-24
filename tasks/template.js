@@ -58,7 +58,7 @@ module.exports = function(grunt) {
     var engine = data.engine || getEngineOf(data.src);
 
     if(!engine){
-      grunt.log.writeln("No compatable engine available");
+      grunt.log.writeln("No compatible engine available");
       return false;
     }
 
