@@ -23,13 +23,13 @@ Universal template compiler task for Grunt. It uses [Consolidate](https://github
   - [whiskers](https://github.com/gsf/whiskers.js/tree/)
 
 ## Getting Started
-    
+
 install via npm
 
     npm install grunt-templater
 
 install the template engine you intend to use. For example, if using Jade:
-  
+
     npm install jade
 
 and in your grunt.js file:
@@ -37,8 +37,8 @@ and in your grunt.js file:
     grunt.loadNpmTasks('grunt-templater');
 
 ## Usage
-    
-Create a `template` task in your grunt config. Templater will guess the intended template engine based on the `src` filename. Pass the `engine` option to force a specific engine. 
+
+Create a `template` task in your grunt config. Templater will guess the intended template engine based on the `src` filename. Pass the `engine` option to force a specific engine.
 
     grunt.initConfig({
       template: {
@@ -58,13 +58,21 @@ Create a `template` task in your grunt config. Templater will guess the intended
             css_url: 'app.min.css'
             title: 'Hello Production'
           }
+        },
+        dynamicVariables: {
+          src: 'app/homepage.jade',
+          dest: 'dist/index.html',
+          variables: function () {
+            css: grunt.file.read('app.min.css'),
+            now: new Date()
+          }
         }
       },
       ...
     });
 
 run with:
-      
+
     grunt template
 
 or for a specific target:
