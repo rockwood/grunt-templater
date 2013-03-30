@@ -58,11 +58,18 @@ module.exports = function(grunt) {
     var engine = data.engine || getEngineOf(data.src);
 
     if(!engine){
-      grunt.log.writeln("No compatible engine available");
+      grunt.log.writeln("No compatable engine available");
       return false;
     }
 
-    consolidate[engine](data.src, data.variables, function(err, html){
+    var vars = data.variables;
+
+    // If the variables are dynamic, grab them
+    if (typeof vars === 'function') {
+      vars = vars();
+    }
+
+    consolidate[engine](data.src, vars, function(err, html){
       if (err)
       {
         grunt.log.error(err);
