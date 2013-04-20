@@ -63,8 +63,10 @@ Create a `template` task in your grunt config. Templater will guess the intended
           src: 'app/homepage.jade',
           dest: 'dist/index.html',
           variables: function () {
-            css: grunt.file.read('app.min.css'),
-            now: new Date()
+            return {
+              css: grunt.file.read('app.min.css'),
+              now: new Date()
+            }
           }
         }
       },
