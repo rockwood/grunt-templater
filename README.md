@@ -40,6 +40,27 @@ and in your grunt.js file:
 
 Create a `template` task in your grunt config. Templater will guess the intended template engine based on the `src` filename. Pass the `engine` option to force a specific engine.
 
+When using the [Grunt file format](http://gruntjs.com/configuring-tasks#files), `variables` is required:
+
+    grunt.initConfig({
+      template: {
+        all: {
+          files: {[
+            expand: true,
+            cwd: 'source',
+            src: [ '**/*.hbs' ],
+            dest: 'build',
+            ext: '.html'
+          ]}
+          variables: {
+            env: environment
+          }
+        }
+      }
+    });
+
+To remain backwards compatible, `src`, `dest` can be used to define files aswell:
+
     grunt.initConfig({
       template: {
         dev: {
@@ -81,4 +102,4 @@ or for a specific target:
 
     grunt template:dev
 
-`src`, `dest`, and `variables` are required. Engine specific options can also be passed through the `variables` option. In the case of Jade, `pretty: true` adds pretty-indentation whitespace to its output.
+Engine specific options can also be passed through the `variables` option. In the case of Jade, `pretty: true` adds pretty-indentation whitespace to its output.
