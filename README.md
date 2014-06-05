@@ -45,13 +45,13 @@ When using the [Grunt file format](http://gruntjs.com/configuring-tasks#files), 
     grunt.initConfig({
       template: {
         all: {
-          files: {[
+          files: [{
             expand: true,
             cwd: 'source',
             src: [ '**/*.hbs' ],
             dest: 'build',
             ext: '.html'
-          ]}
+          }],
           variables: {
             env: environment
           }
