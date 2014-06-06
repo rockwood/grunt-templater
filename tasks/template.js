@@ -7,6 +7,7 @@
 module.exports = function(grunt) {
   'use strict';
 
+  var Promise = require('es6-promise').Promise;
   var consolidate = require('consolidate'),
       fs = require('fs');
 
@@ -68,25 +69,30 @@ module.exports = function(grunt) {
 
     var compile = function compile(src, dest, vars) {
       var engine = data.engine || getEngineOf(src);
-
-      if (!engine) {
-        grunt.log.writeln("No compatable engine available");
-        return false;
-      }
-
-      consolidate[engine](src, vars, function(err, html) {
-        if (err) {
-          grunt.log.error(err);
-          done(false);
+      return new Promise(function(resolve, reject) {
+        if (!engine) {
+          grunt.log.writeln("No compatable engine available");
+          reject();
         }
-        grunt.file.write(dest, html);
-        grunt.log.writeln("Generated html to '"+ dest +"'");
-        done(true);
+
+        consolidate[engine](src, vars, function(err, html) {
+          if (err) {
+            grunt.log.error(err);
+            reject();
+          }
+          grunt.file.write(dest, html);
+          grunt.log.writeln("Generated html to '"+ dest +"'");
+          resolve();
+        });
+
       });
     };
 
+
+    var asyncCompiles;
+
     if (hasFiles) {
-      this.files.forEach(function(file) {
+      asyncCompiles = this.files.map(function(file) {
         var src = file.src.filter(function(filepath) {
           // Warn on and remove invalid source files (if nonull was set).
           if (!grunt.file.exists(filepath)) {
@@ -96,11 +102,17 @@ module.exports = function(grunt) {
             return true;
           }
         })[0];
-        compile(src, file.dest, vars);
+        return compile(src, file.dest, vars);
       });
     } else {
-      compile(data.src, data.dest, vars);
+      asyncCompiles = [ compile(data.src, data.dest, vars) ];
     }
+
+    Promise.all(asyncCompiles).then(function() {
+      done(true);
+    }).catch(function() {
+      done(false);
+    });
 
   });
 };
