@@ -7,16 +7,10 @@
     "name": "Kevin Rockwood",
     "email": "kevin@rockwood.me"
   },
-  "repositories": [
-    {
-      "type": "git",
-      "url": "git@github.com:rockwood/grunt-templater.git"
-    },
-    {
-      "type": "git",
-      "url": "https://github.com/visionmedia/consolidate.js.git"
-    }
-  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:rockwood/grunt-templater.git"
+  },
   "bugs": {
     "url": "https://github.com/rockwood/grunt-templater/issues"
   },
