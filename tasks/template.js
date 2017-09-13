@@ -45,7 +45,7 @@ module.exports = function(grunt) {
 
   function getEngineOf(fileName) {
     var extension = _(fileName.match(/[^.]*$/)).last();
-    return  _( _(extensions).keys() ).include(extension) ? extensions[extension] : false;
+    return  _( _(extensions).keys() ).includes(extension) ? extensions[extension] : false;
   }
 
   grunt.registerMultiTask('template', 'generates an html file from a specified template', function(){
